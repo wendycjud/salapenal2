@@ -1,0 +1,203 @@
+<div class="max-w-7xl mx-auto">
+
+  <h1 class="text-3xl font-semibold mb-6">
+    Consulta de Toca
+  </h1>
+
+  <!-- BÚSQUEDA -->
+  <p-card>
+
+    <div class="grid md:grid-cols-3 gap-4 items-end">
+
+      <div>
+        <label class="block mb-2 font-medium">
+          Sala
+        </label>
+
+        <p-select
+          [options]="salas"
+          [(ngModel)]="salaSeleccionada"
+          optionLabel="nombre"
+          placeholder="Seleccione una sala"
+          class="w-full">
+        </p-select>
+      </div>
+
+      <div>
+        <label class="block mb-2 font-medium">
+          TOCA
+        </label>
+
+        <input
+          pInputText
+          [(ngModel)]="toca"
+          class="w-full"
+          placeholder="Ingrese el TOCA">
+      </div>
+
+      <div>
+        <p-button
+          label="Buscar"
+          icon="pi pi-search"
+          (onClick)="buscar()">
+        </p-button>
+      </div>
+
+    </div>
+
+  </p-card>
+
+  @if(resultado){
+
+    <div class="mt-6 space-y-4">
+
+      <!-- DATOS GENERALES -->
+      <p-card>
+
+        <h2 class="text-xl font-semibold mb-4">
+          Datos Generales
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div>
+            <span class="font-semibold">Fecha:</span>
+            {{ resultado.fecha }}
+          </div>
+
+          <div>
+            <span class="font-semibold">TOCA:</span>
+            {{ resultado.toca }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Expediente:</span>
+            {{ resultado.expediente }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Juzgado de Procedencia:</span>
+            {{ resultado.juzgadoProcedencia }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Fecha de Radicación:</span>
+            {{ resultado.fechaRadicacion }}
+          </div>
+
+        </div>
+
+      </p-card>
+
+      <!-- PARTES -->
+      <p-card>
+
+        <h2 class="text-xl font-semibold mb-4">
+          Partes
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div>
+            <span class="font-semibold">Víctima:</span>
+            {{ resultado.victima }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Imputado:</span>
+            {{ resultado.imputado }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Apelante:</span>
+            {{ resultado.apelante }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Delito:</span>
+            {{ resultado.delito }}
+          </div>
+
+        </div>
+
+      </p-card>
+
+      <!-- RESOLUCIÓN -->
+      <p-card>
+
+        <h2 class="text-xl font-semibold mb-4">
+          Resolución
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div>
+            <span class="font-semibold">Resolución Apelada:</span>
+            {{ resultado.resolucionApelada }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Fecha Resolución:</span>
+            {{ resultado.fechaResolucion }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Sentido de la Resolución:</span>
+            {{ resultado.sentidoResolucion }}
+          </div>
+
+        </div>
+
+      </p-card>
+
+      <!-- INFORMACIÓN ADICIONAL -->
+      <p-card>
+
+        <h2 class="text-xl font-semibold mb-4">
+          Información Adicional
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div>
+            <span class="font-semibold">DVD:</span>
+            {{ resultado.dvd }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Compreso:</span>
+            {{ resultado.compreso }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Proyectista:</span>
+            {{ resultado.proyectista }}
+          </div>
+
+          <div>
+            <span class="font-semibold">Amparo:</span>
+            {{ resultado.amparo }}
+          </div>
+
+        </div>
+
+      </p-card>
+
+      <!-- OBSERVACIONES -->
+      <p-card>
+
+        <h2 class="text-xl font-semibold mb-4">
+          Observaciones
+        </h2>
+
+        <p>
+          {{ resultado.observaciones }}
+        </p>
+
+      </p-card>
+
+    </div>
+
+  }
+
+</div>
