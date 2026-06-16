@@ -1,60 +1,61 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
-import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-consulta-page',
+  standalone: true,
   imports: [
     FormsModule,
     CardModule,
-    InputTextModule,
     ButtonModule,
-    SelectModule,
-    DividerModule
+    InputTextModule,
+    SelectModule
   ],
   templateUrl: './consulta-page.html',
-  styleUrl: './consulta-page.css'
 })
 export class ConsultaPage {
 
   salas = [
-  { id: 1, nombre: 'Primera Sala Penal' },
-  { id: 2, nombre: 'Segunda Sala Penal' }
-];
+    { id: 1, nombre: 'Primera Sala Penal' },
+    { id: 2, nombre: 'Segunda Sala Penal' },
+    { id: 3, nombre: 'Tercera Sala Penal' }
+  ];
 
-salaSeleccionada: any = null;
+  salaSeleccionada: any = null;
 
-toca = '';
+  toca = '';
 
-resultado: any = null;
+  resultado: any = null;
 
-  buscar() {
-
-    // Simulación mientras no exista API
+  buscar(): void {
 
     this.resultado = {
-      fecha: '15/06/2026',
+      fecha: '15/06/2025',
       toca: this.toca,
+      expediente: '456/2025',
       juzgadoProcedencia: 'Juzgado Primero Penal',
-      expediente: '123/2025',
-      dvd: 'Sí',
-      resolucionApelada: 'Sentencia',
-      fechaResolucion: '10/06/2026',
-      compreso: 'No',
+      fechaRadicacion: '10/06/2025',
+
       victima: 'Juan Pérez',
-      delito: 'Fraude',
       imputado: 'María López',
       apelante: 'Ministerio Público',
-      fechaRadicacion: '05/06/2026',
-      proyectista: 'Lic. García',
+      delito: 'Fraude',
+
+      resolucionApelada: 'Sentencia Definitiva',
+      fechaResolucion: '12/06/2025',
       sentidoResolucion: 'Confirmada',
-      observaciones: 'Sin observaciones',
-      amparo: '234/2026'
+
+      dvd: 'Sí',
+      compreso: 'No',
+      proyectista: 'Lic. García',
+      amparo: '123/2025',
+
+      observaciones: 'Sin observaciones.'
     };
 
   }

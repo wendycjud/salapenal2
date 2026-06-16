@@ -1,16 +1,26 @@
-<div class="max-w-7xl mx-auto">
+<div class="max-w-4xl mx-auto py-12">
 
-  <h1 class="text-3xl font-semibold mb-6">
-    Consulta de Toca
-  </h1>
+  <!-- ENCABEZADO -->
+  <div class="text-center mb-10">
+
+    <h1 class="text-5xl font-bold pj-title">
+      Consulta de TOCA
+    </h1>
+
+    <p class="mt-4 text-lg text-slate-600">
+      Seleccione una sala e ingrese el número de TOCA
+    </p>
+
+  </div>
 
   <!-- BÚSQUEDA -->
   <p-card>
 
-    <div class="grid md:grid-cols-3 gap-4 items-end">
+    <div class="max-w-xl mx-auto">
 
-      <div>
-        <label class="block mb-2 font-medium">
+      <div class="mb-6">
+
+        <label class="block mb-2 font-medium text-slate-700">
           Sala
         </label>
 
@@ -21,26 +31,32 @@
           placeholder="Seleccione una sala"
           class="w-full">
         </p-select>
+
       </div>
 
-      <div>
-        <label class="block mb-2 font-medium">
+      <div class="mb-8">
+
+        <label class="block mb-2 font-medium text-slate-700">
           TOCA
         </label>
 
         <input
           pInputText
           [(ngModel)]="toca"
-          class="w-full"
-          placeholder="Ingrese el TOCA">
+          class="w-full text-center text-lg"
+          placeholder="Ingrese el número de TOCA">
+
       </div>
 
-      <div>
+      <div class="flex justify-center">
+
         <p-button
           label="Buscar"
           icon="pi pi-search"
+          styleClass="pj-btn"
           (onClick)="buscar()">
         </p-button>
+
       </div>
 
     </div>
@@ -49,152 +65,230 @@
 
   @if(resultado){
 
-    <div class="mt-6 space-y-4">
+    <div class="mt-10 space-y-6">
 
       <!-- DATOS GENERALES -->
-      <p-card>
+      <div class="pj-section">
 
-        <h2 class="text-xl font-semibold mb-4">
-          Datos Generales
-        </h2>
+        <div class="pj-section-header">
+          <h2 class="font-semibold text-lg">
+            Datos Generales
+          </h2>
+        </div>
 
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-6 grid md:grid-cols-2 gap-4">
 
           <div>
-            <span class="font-semibold">Fecha:</span>
-            {{ resultado.fecha }}
+            <label class="block text-sm font-semibold mb-1">
+              Fecha
+            </label>
+            <div class="pj-field">
+              {{ resultado.fecha }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">TOCA:</span>
-            {{ resultado.toca }}
+            <label class="block text-sm font-semibold mb-1">
+              TOCA
+            </label>
+            <div class="pj-field">
+              {{ resultado.toca }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Expediente:</span>
-            {{ resultado.expediente }}
+            <label class="block text-sm font-semibold mb-1">
+              Expediente
+            </label>
+            <div class="pj-field">
+              {{ resultado.expediente }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Juzgado de Procedencia:</span>
-            {{ resultado.juzgadoProcedencia }}
+            <label class="block text-sm font-semibold mb-1">
+              Juzgado de Procedencia
+            </label>
+            <div class="pj-field">
+              {{ resultado.juzgadoProcedencia }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Fecha de Radicación:</span>
-            {{ resultado.fechaRadicacion }}
+            <label class="block text-sm font-semibold mb-1">
+              Fecha de Radicación
+            </label>
+            <div class="pj-field">
+              {{ resultado.fechaRadicacion }}
+            </div>
           </div>
 
         </div>
 
-      </p-card>
+      </div>
 
       <!-- PARTES -->
-      <p-card>
+      <div class="pj-section">
 
-        <h2 class="text-xl font-semibold mb-4">
-          Partes
-        </h2>
+        <div class="pj-section-header">
+          <h2 class="font-semibold text-lg">
+            Partes
+          </h2>
+        </div>
 
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-6 grid md:grid-cols-2 gap-4">
 
           <div>
-            <span class="font-semibold">Víctima:</span>
-            {{ resultado.victima }}
+            <label class="block text-sm font-semibold mb-1">
+              Víctima
+            </label>
+            <div class="pj-field">
+              {{ resultado.victima }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Imputado:</span>
-            {{ resultado.imputado }}
+            <label class="block text-sm font-semibold mb-1">
+              Imputado
+            </label>
+            <div class="pj-field">
+              {{ resultado.imputado }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Apelante:</span>
-            {{ resultado.apelante }}
+            <label class="block text-sm font-semibold mb-1">
+              Apelante
+            </label>
+            <div class="pj-field">
+              {{ resultado.apelante }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Delito:</span>
-            {{ resultado.delito }}
+            <label class="block text-sm font-semibold mb-1">
+              Delito
+            </label>
+            <div class="pj-field">
+              {{ resultado.delito }}
+            </div>
           </div>
 
         </div>
 
-      </p-card>
+      </div>
 
       <!-- RESOLUCIÓN -->
-      <p-card>
+      <div class="pj-section">
 
-        <h2 class="text-xl font-semibold mb-4">
-          Resolución
-        </h2>
+        <div class="pj-section-header">
+          <h2 class="font-semibold text-lg">
+            Resolución
+          </h2>
+        </div>
 
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-6 grid md:grid-cols-2 gap-4">
 
           <div>
-            <span class="font-semibold">Resolución Apelada:</span>
-            {{ resultado.resolucionApelada }}
+            <label class="block text-sm font-semibold mb-1">
+              Resolución Apelada
+            </label>
+            <div class="pj-field">
+              {{ resultado.resolucionApelada }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Fecha Resolución:</span>
-            {{ resultado.fechaResolucion }}
+            <label class="block text-sm font-semibold mb-1">
+              Fecha Resolución
+            </label>
+            <div class="pj-field">
+              {{ resultado.fechaResolucion }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Sentido de la Resolución:</span>
-            {{ resultado.sentidoResolucion }}
+            <label class="block text-sm font-semibold mb-1">
+              Sentido de la Resolución
+            </label>
+            <div class="pj-field">
+              {{ resultado.sentidoResolucion }}
+            </div>
           </div>
 
         </div>
 
-      </p-card>
+      </div>
 
       <!-- INFORMACIÓN ADICIONAL -->
-      <p-card>
+      <div class="pj-section">
 
-        <h2 class="text-xl font-semibold mb-4">
-          Información Adicional
-        </h2>
+        <div class="pj-section-header">
+          <h2 class="font-semibold text-lg">
+            Información Adicional
+          </h2>
+        </div>
 
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-6 grid md:grid-cols-2 gap-4">
 
           <div>
-            <span class="font-semibold">DVD:</span>
-            {{ resultado.dvd }}
+            <label class="block text-sm font-semibold mb-1">
+              DVD
+            </label>
+            <div class="pj-field">
+              {{ resultado.dvd }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Compreso:</span>
-            {{ resultado.compreso }}
+            <label class="block text-sm font-semibold mb-1">
+              Compreso
+            </label>
+            <div class="pj-field">
+              {{ resultado.compreso }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Proyectista:</span>
-            {{ resultado.proyectista }}
+            <label class="block text-sm font-semibold mb-1">
+              Proyectista
+            </label>
+            <div class="pj-field">
+              {{ resultado.proyectista }}
+            </div>
           </div>
 
           <div>
-            <span class="font-semibold">Amparo:</span>
-            {{ resultado.amparo }}
+            <label class="block text-sm font-semibold mb-1">
+              Amparo
+            </label>
+            <div class="pj-field">
+              {{ resultado.amparo }}
+            </div>
           </div>
 
         </div>
 
-      </p-card>
+      </div>
 
       <!-- OBSERVACIONES -->
-      <p-card>
+      <div class="pj-section">
 
-        <h2 class="text-xl font-semibold mb-4">
-          Observaciones
-        </h2>
+        <div class="pj-section-header">
+          <h2 class="font-semibold text-lg">
+            Observaciones
+          </h2>
+        </div>
 
-        <p>
-          {{ resultado.observaciones }}
-        </p>
+        <div class="p-6">
 
-      </p-card>
+          <div class="pj-field min-h-[120px]">
+            {{ resultado.observaciones }}
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
