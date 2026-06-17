@@ -1,297 +1,250 @@
 <div class="max-w-4xl mx-auto py-12">
-
   <!-- ENCABEZADO -->
   <div class="text-center mb-10">
+    <h1 class="text-5xl font-bold pj-title">Consulta de TOCA</h1>
 
-    <h1 class="text-5xl font-bold pj-title">
-      Bienvenido a la Consulta de TOCAS
-    </h1>
-
-    <p class="mt-4 text-lg text-slate-600">
-      Seleccione una sala e ingrese el número de TOCA
-    </p>
-
+    <p class="mt-4 text-lg text-slate-600">Seleccione una sala e ingrese el número de TOCA</p>
   </div>
 
   <!-- BÚSQUEDA -->
   <p-card>
-
     <div class="max-w-xl mx-auto">
-
       <div class="mb-6">
-
-        <label class="block mb-2 font-medium text-slate-700">
-          Sala
-        </label>
+        <label class="block mb-2 font-medium text-slate-700"> Sala </label>
 
         <p-select
           [options]="salas"
           [(ngModel)]="salaSeleccionada"
-          optionLabel="nombre"
+          optionLabel="label"
+          optionValue="value"
           placeholder="Seleccione una sala"
-          class="w-full">
+          class="w-full"
+        >
         </p-select>
-
       </div>
 
       <div class="mb-8">
-
-        <label class="block mb-2 font-medium text-slate-700">
-          TOCA
-        </label>
+        <label class="block mb-2 font-medium text-slate-700"> TOCA </label>
 
         <input
           pInputText
           [(ngModel)]="toca"
           class="w-full text-center text-lg"
-          placeholder="Ingrese el número de TOCA">
-
+          placeholder="Ingrese el número de TOCA"
+        />
       </div>
 
       <div class="flex justify-center">
-
         <p-button
           label="Buscar"
           icon="pi pi-search"
           styleClass="pj-btn"
-          (onClick)="buscar()">
+          [loading]="loading"
+          [disabled]="loading"
+          (onClick)="buscar()"
+        >
         </p-button>
-
       </div>
-
+      @if (loading) {
+        <div class="text-center mt-4 text-slate-500">Consultando expediente...</div>
+      }
     </div>
-
   </p-card>
 
-  @if(resultado){
+  @if (busquedaRealizada && mensajeError) {
+    <div class="mt-8">
+      <div class="pj-section">
+        <div class="pj-section-header">
+          <h2 class="font-semibold text-lg">Resultado de la búsqueda</h2>
+        </div>
 
+        <div class="p-8 text-center">
+          <i class="pi pi-search text-5xl text-slate-400 mb-4 block"> </i>
+
+          <p class="text-lg font-semibold text-slate-700">No se encontraron registros</p>
+
+          <p class="text-slate-500 mt-2">
+            {{ mensajeError }}
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+  <p class="mt-4">Loading: {{ loading }}</p>
+
+  <p>Resultado: {{ resultado ? 'SI' : 'NO' }}</p>
+
+  <p>Error: {{ mensajeError }}</p>
+  @if (resultado) {
+    
     <div class="mt-10 space-y-6">
-
       <!-- DATOS GENERALES -->
       <div class="pj-section">
-
         <div class="pj-section-header">
-          <h2 class="font-semibold text-lg">
-            Datos Generales
-          </h2>
+          <h2 class="font-semibold text-lg">Datos Generales</h2>
         </div>
 
         <div class="p-6 grid md:grid-cols-2 gap-4">
-
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Fecha
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Fecha de Recepción </label>
             <div class="pj-field">
-              {{ resultado.fecha }}
+              {{ resultado.recepcion }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              TOCA
-            </label>
+            <label class="block text-sm font-semibold mb-1"> TOCA </label>
             <div class="pj-field">
               {{ resultado.toca }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Expediente
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Causa Penal </label>
             <div class="pj-field">
               {{ resultado.expediente }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Juzgado de Procedencia
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Juzgado de Procedencia </label>
             <div class="pj-field">
               {{ resultado.juzgadoProcedencia }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Fecha de Radicación
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Fecha de Radicación </label>
             <div class="pj-field">
               {{ resultado.fechaRadicacion }}
             </div>
           </div>
-
         </div>
-
       </div>
 
       <!-- PARTES -->
       <div class="pj-section">
-
         <div class="pj-section-header">
-          <h2 class="font-semibold text-lg">
-            Partes
-          </h2>
+          <h2 class="font-semibold text-lg">Partes</h2>
         </div>
 
         <div class="p-6 grid md:grid-cols-2 gap-4">
-
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Víctima
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Víctima </label>
             <div class="pj-field">
               {{ resultado.victima }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Imputado
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Imputado </label>
             <div class="pj-field">
               {{ resultado.imputado }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Apelante
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Apelante </label>
             <div class="pj-field">
               {{ resultado.apelante }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Delito
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Delito </label>
             <div class="pj-field">
               {{ resultado.delito }}
             </div>
           </div>
-
         </div>
-
       </div>
 
       <!-- RESOLUCIÓN -->
       <div class="pj-section">
-
         <div class="pj-section-header">
-          <h2 class="font-semibold text-lg">
-            Resolución
-          </h2>
+          <h2 class="font-semibold text-lg">Resolución</h2>
         </div>
 
         <div class="p-6 grid md:grid-cols-2 gap-4">
-
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Resolución Apelada
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Resolución Apelada </label>
             <div class="pj-field">
               {{ resultado.resolucionApelada }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Fecha Resolución
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Fecha Resolución </label>
             <div class="pj-field">
               {{ resultado.fechaResolucion }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Sentido de la Resolución
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Sentido de la Resolución </label>
             <div class="pj-field">
               {{ resultado.sentidoResolucion }}
             </div>
           </div>
-
         </div>
-
       </div>
 
       <!-- INFORMACIÓN ADICIONAL -->
       <div class="pj-section">
-
         <div class="pj-section-header">
-          <h2 class="font-semibold text-lg">
-            Información Adicional
-          </h2>
+          <h2 class="font-semibold text-lg">Información Adicional</h2>
         </div>
 
         <div class="p-6 grid md:grid-cols-2 gap-4">
-
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              DVD
-            </label>
+            <label class="block text-sm font-semibold mb-1"> DVD </label>
             <div class="pj-field">
               {{ resultado.dvd }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Compreso
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Con Preso </label>
             <div class="pj-field">
-              {{ resultado.compreso }}
+              {{ resultado.conPreso }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Proyectista
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Lugar del CERESO </label>
+            <div class="pj-field">
+              {{ resultado.lugarCereso }}
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-1"> Proyectista </label>
             <div class="pj-field">
               {{ resultado.proyectista }}
             </div>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold mb-1">
-              Amparo
-            </label>
+            <label class="block text-sm font-semibold mb-1"> Promueve Amparo </label>
             <div class="pj-field">
-              {{ resultado.amparo }}
+              {{ resultado.promueveAmparo }}
             </div>
           </div>
-
         </div>
-
       </div>
 
       <!-- OBSERVACIONES -->
       <div class="pj-section">
-
         <div class="pj-section-header">
-          <h2 class="font-semibold text-lg">
-            Observaciones
-          </h2>
+          <h2 class="font-semibold text-lg">Observaciones</h2>
         </div>
 
         <div class="p-6">
-
           <div class="pj-field min-h-[120px]">
             {{ resultado.observaciones }}
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   }
-
 </div>
